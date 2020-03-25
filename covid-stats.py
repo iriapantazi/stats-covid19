@@ -142,11 +142,12 @@ def main():
     elif args.confirmed:
         mode = 'confirmed'
     else:
+        mode = 'deaths'
         print(f'No mode requested, will consider number of deaths.')
 
 
     if args.countries:
-        request_data(args.countries, mode='deaths')
+        request_data(args.countries, mode)
 
 
 if __name__ == "__main__":
