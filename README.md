@@ -29,15 +29,16 @@ These are:
 2. `-d` for plotting the cumulative deaths per day.
 3. `-r` for plotting the cumulative recovered cases per day.
 4. `-o` for plotting the cumulative confirmed cases per day.
-
 These options are also available through the command 
 `./covid-stats.py -h`.
 
+The plots start from day 0 (2020-01-22), and continue up to current date.
 
-### **Example output**
 
-Requesting the number of deaths `./covid-stats.py -d -c Greece Italy` example output:
-![image](img/trainsLinesStatus_output.png "trainsLinesStatus example output")
+### **Example input/output**
+Requesting the number of deaths `./covid-stats.py -d -c Greece Italy`.
+Exampple plots will follow.
+
 
 ## **Authors** 
 If you have any suggestions/corrections, 
