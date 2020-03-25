@@ -2,6 +2,7 @@
 
 import argparse
 import os.path
+import sys
 import requests
 import json
 import matplotlib.pyplot as plt
@@ -11,6 +12,15 @@ import numpy as np
 # constants
 URL = 'https://pomber.github.io/covid19/timeseries.json'
 COUNTRIES_CSV = 'countries.csv'
+
+
+def detect_python_version():
+    """
+    """
+    if sys.version_info.major < 3:
+        print(f'Python {sys.version_info.major} '
+                f'is not supported. Program exits.')
+        sys.exit(-1)
 
 
 def parse_arguments():
@@ -83,7 +93,12 @@ def request_data(entries, mode):
             continue
         mode_entries = []
         for dt in res:
-            mode_entries.append(dt.get(mode))
+            try:
+                mode_num = int(dt.get(mode))
+            except Exception as e:
+                print(f'program breaks due to: {e}')
+                sys.exit(-1)
+            mode_entries.append(mode_num)
         plt.plot(x, mode_entries, 'o-',label=ent)
     plt.ylim(ymin=1.0)
     plt.legend(frameon=False)
@@ -116,8 +131,9 @@ def main():
     functions according to the parsed
     arguments.
     """
-    args = parse_arguments()
+    detect_python_version()
 
+    args = parse_arguments()
 
     if args.deaths:
         mode = 'deaths'
@@ -125,8 +141,8 @@ def main():
         mode = 'recovered'
     elif args.confirmed:
         mode = 'confirmed'
-    #else:
-    #    mode = 'deaths'
+    else:
+        print(f'No mode requested, will consider number of deaths.')
 
 
     if args.countries:
