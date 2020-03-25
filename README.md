@@ -37,7 +37,10 @@ The plots start from day 0 (2020-01-22), and continue up to current date.
 
 ### **Example input/output**
 Requesting the number of deaths `./covid-stats.py -d -c Greece Italy`.
-Exampple plots will follow.
+Exampple plots for cumulative number of confirmed cases and deaths
+for three countries:
+![image](img/gr_it_th_confirmed.png "confirmed cases")
+![image](img/gr_it_th_deaths.png "deaths")
 
 
 ## **Authors** 
