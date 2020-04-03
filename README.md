@@ -26,21 +26,24 @@ has to install the package requirements with the command
 The program provides a  variation of arguments that can be parsed. 
 These are:
 1. `-c` for providing the country name(s).
-2. `-d` for plotting the cumulative deaths per day.
-3. `-r` for plotting the cumulative recovered cases per day.
-4. `-o` for plotting the cumulative confirmed cases per day.
+2. `-m` for choosing from valid modes (deaths, confirmed, recovered).
+3. `-f` for including fitting on the data (default=false).
 These options are also available through the command 
 `./covid-stats.py -h`.
 
-The plots start from day 0 (2020-01-22), and continue up to current date.
-
+## N.B. ##
+- The plots start from day 0 (2020-01-22), and continue up to current date.
+- When requesting data for countries like UK, use 'United Kingdom'.
+- File `countries.csv` contains all valid countries for which data are provided.
+- Fitting correction is still in progress.
 
 ### **Example input/output**
 Requesting the number of deaths `./covid-stats.py -d -c Greece Italy`.
 Exampple plots for cumulative number of confirmed cases and deaths
 for three countries:
-![image](img/gr_it_th_confirmed.png "confirmed cases")
-![image](img/gr_it_th_deaths.png "deaths")
+
+[image](img/gr_it_th_confirmed.png "confirmed cases")
+[image](img/gr_it_th_deaths.png "deaths")
 
 
 ## **Authors** 
