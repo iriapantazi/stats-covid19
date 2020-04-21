@@ -1,0 +1,7 @@
+version: '3'
+services:
+  covid_http_api:
+    build: . 
+    image: covid_http_api:tag_0.1
+    ports:
+      - '5000:5000'
