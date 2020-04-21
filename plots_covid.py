@@ -1,11 +1,15 @@
 #! /usr/bin/env python
 
-
+import io
+import base64
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.optimize import curve_fit
-from covid import COUNTRIES_CSV
 from fit_functions import fit_exp_1
+
+
+# constants
+COUNTRIES_CSV = 'countries.csv'
 
 
 def title_sum(mode):
@@ -58,7 +62,7 @@ def plot_mode(data, countries, fit, mode):
     ax1.set_yscale('log')
     ax2.set_yscale('log')
     x = np.arange(days)
-    x_fit = np.linspace(30, 60, 80)
+    x_fit = np.linspace(30, 80, 100)
     xmini = 20
 
     # extract y-axis data
@@ -66,8 +70,8 @@ def plot_mode(data, countries, fit, mode):
         res = data.get(cnt)
         if (res == None):
             print(f'There is no country named {cnt}.'
-                    f'Please refer to {COUNTRIES_CSV} for'
-                    f'a list of valid countries.')
+                    f' Please refer to {COUNTRIES_CSV} for'
+                    f' a list of valid countries.')
             continue
         mode_entries = []
         for dt in res:
@@ -96,5 +100,11 @@ def plot_mode(data, countries, fit, mode):
     ax1.set_title(title_sum(mode))
     ax2.set_title(title_sin(mode))
     #plt.show()
-    plt.savefig('plot.png', bbox_inches='tight')
-    plt.savefig('plot.pdf', bbox_inches='tight')
+    plt.savefig('static/img/plot.png', bbox_inches='tight')
+    plt.savefig('static/img/plot.pdf', bbox_inches='tight')
+    # save byteimage
+    img = io.BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    plot_url = base64.b64encode(img.getvalue()).decode()
+    return(plot_url)
