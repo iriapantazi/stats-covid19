@@ -42,8 +42,7 @@ Requesting the number of deaths `./covid-stats.py -d -c Greece Italy`.
 Exampple plots for cumulative number of confirmed cases and deaths
 for three countries:
 
-[image](img/gr_it_th_confirmed.png "confirmed cases")
-[image](img/gr_it_th_deaths.png "deaths")
+[image](img/plot.png "deaths")
 
 
 ## **Authors** 
